@@ -1,0 +1,59 @@
+import java.io.*;
+public class SplitTwoLL {
+    public static class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data=data;
+            this.next=null;
+
+        }
+    }
+    public static Node odd(Node a){
+        Node temp = a;
+        Node o = new Node(-1);
+        Node e = new Node(-1);
+        Node t1 = o;
+        Node t2 = e;
+        while(temp!=null){
+            if(temp.data%2 != 0){
+                t1.next=temp;
+                t1=temp;
+                temp=temp.next;
+            }
+            else{
+                t2.next=temp;
+                t2=temp;
+                temp=temp.next;
+            }
+        }
+        t1.next=null;
+        t2.next=null;
+        t1.next=e.next;
+        return o.next;
+
+    }
+    public static void display(Node a){
+        Node temp = a;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+    public static void main(String[] args) {
+        Node a = new Node(100);
+        Node b = new Node(13);
+        Node c = new Node(4);
+        Node d = new Node(5);
+        Node e = new Node(12);
+        Node f = new Node(10);
+        a.next=b;
+        b.next=c;
+        c.next=d;
+        d.next=e;
+        e.next=f;
+        Node res = odd(a);
+        display(res);
+    }
+}
